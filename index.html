@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Іванна Новічкова - Портфоліо</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.5s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #667eea;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #667eea;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #a094cf;
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        color: #979fdf;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: white;
+        color: #667eea;
+        text-decoration: none;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      section {
+        padding: 80px 0;
+        background: white;
+      }
+
+      section:nth-child(even) {
+        background: #f8f9fa;
+      }
+
+      h2 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 50px;
+        color: #667eea;
+      }
+
+      .bio-content {
+        display: flex;
+        gap: 50px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .bio-photo {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 100px;
+        color: white;
+        flex-shrink: 0;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 20px rgba(102, 126, 234, 0);
+        }
+      }
+
+      .bio-text {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .bio-text p {
+        margin-bottom: 15px;
+        font-size: 18px;
+      }
+
+      .filter-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 10px 25px;
+        border: 2px solid #667eea;
+        background: white;
+        color: #667eea;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: #667eea;
+        color: white;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-img {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color: white;
+      }
+
+      .project-info {
+        padding: 20px;
+      }
+
+      .project-info h3 {
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .project-info p {
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .project-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        padding: 5px 15px;
+        background: #e9ecef;
+        border-radius: 15px;
+        font-size: 12px;
+        color: #667eea;
+      }
+
+      .cv-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .cv-block {
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .cv-block h3 {
+        color: #667eea;
+        margin-bottom: 20px;
+      }
+
+      .cv-item {
+        margin-bottom: 20px;
+        padding-left: 20px;
+        border-left: 3px solid #667eea;
+      }
+
+      .cv-item h4 {
+        margin-bottom: 5px;
+      }
+
+      .cv-item span {
+        color: #999;
+        font-size: 14px;
+      }
+
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .blog-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .blog-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .blog-img {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 40px;
+      }
+
+      .blog-content {
+        padding: 20px;
+      }
+
+      .blog-content h3 {
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .blog-meta {
+        color: #999;
+        font-size: 14px;
+        margin-bottom: 15px;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      footer {
+        background: #2c3e50;
+        color: white;
+        text-align: center;
+        padding: 30px 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        nav ul {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .bio-content {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <div class="logo">Іванна Новічкова</div>
+        <ul>
+          <li><a href="#home">Головна</a></li>
+          <li><a href="#bio">Про мене</a></li>
+          <li><a href="#portfolio">Портфоліо</a></li>
+          <li><a href="#cv">CV</a></li>
+          <li><a href="#blog">Блог</a></li>
+          <li><a href="#contact">Контакти</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Іванна Новічкова</h1>
+        <p>Студент-розробник | UI/UX дизайнер | Креативний мислитель</p>
+        <a href="#portfolio" class="btn">Переглянути роботи</a>
+      </div>
+    </section>
+
+    <section id="bio">
+      <div class="container">
+        <h2>Про мене</h2>
+        <div class="bio-content">
+          <div class="bio-photo">👨‍💻</div>
+          <div class="bio-text">
+            <p>
+              Привіт! Я Іванна Новічкова, студентка 3 курсу факультету
+              комп'ютерних наук. Захоплююсь веб-розробкою та дизайном
+              інтерфейсів.
+            </p>
+            <p>
+              Маю досвід роботи з HTML, CSS, JavaScript, React, а також із
+              сучасними LCNC-платформами як Webflow та WordPress.
+            </p>
+            <p>
+              Постійно навчаюсь новим технологіям і прагну створювати зручні та
+              естетичні цифрові продукти.
+            </p>
+            <p>
+              <strong>Навички:</strong> Web Development, UI/UX Design, Graphic
+              Design, Video Editing
+            </p>
+            <p>
+              <strong>Мови:</strong> Українська (рідна), Англійська (B2),
+              Польська (A2)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <h2>Мої роботи</h2>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">Всі</button>
+          <button class="filter-btn" data-filter="web">Веб</button>
+          <button class="filter-btn" data-filter="design">Дизайн</button>
+          <button class="filter-btn" data-filter="mobile">Мобільні</button>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card" data-category="web">
+            <div class="project-img">🌐</div>
+            <div class="project-info">
+              <h3>E-commerce платформа</h3>
+              <p>
+                Розробка повнофункціонального інтернет-магазину з системою
+                оплати та адмін-панеллю.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="design">
+            <div class="project-img">🎨</div>
+            <div class="project-info">
+              <h3>Редизайн мобільного додатку</h3>
+              <p>
+                Створення сучасного UI/UX для фітнес-додатку з фокусом на
+                користувацький досвід.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Prototyping</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web">
+            <div class="project-img">📱</div>
+            <div class="project-info">
+              <h3>Корпоративний сайт</h3>
+              <p>
+                Розробка адаптивного сайту для ІТ-компанії з анімаціями та
+                CMS-інтеграцією.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Webflow</span>
+                <span class="tag">CMS</span>
+                <span class="tag">Animation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="mobile">
+            <div class="project-img">📲</div>
+            <div class="project-info">
+              <h3>Додаток для навчання</h3>
+              <p>
+                Мобільний додаток для вивчення іноземних мов з геймифікацією.
+              </p>
+              <div class="project-tags">
+                <span class="tag">React Native</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">UX Design</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="design">
+            <div class="project-img">✨</div>
+            <div class="project-info">
+              <h3>Брендинг стартапу</h3>
+              <p>
+                Розробка фірмового стилю, логотипу та гайдлайнів для
+                технологічного стартапу.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Branding</span>
+                <span class="tag">Illustrator</span>
+                <span class="tag">Identity</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="web">
+            <div class="project-img">💼</div>
+            <div class="project-info">
+              <h3>Блог-платформа</h3>
+              <p>
+                Створення багатомовної блог-платформи з можливістю монетизації
+                контенту.
+              </p>
+              <div class="project-tags">
+                <span class="tag">WordPress</span>
+                <span class="tag">PHP</span>
+                <span class="tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv">
+      <div class="container">
+        <h2>Резюме</h2>
+        <div class="cv-section">
+          <div class="cv-block">
+            <h3>Освіта</h3>
+            <div class="cv-item">
+              <h4>Київський авіаційний інститут</h4>
+              <span>2023 - 2027</span>
+              <p>Бакалавр комп'ютерних наук</p>
+            </div>
+            <div class="cv-item">
+              <h4>Онлайн-курси</h4>
+              <span>2023</span>
+              <p>Full Stack Web Development (Udemy)</p>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <h3>Досвід роботи</h3>
+            <div class="cv-item">
+              <h4>Web Developer Intern</h4>
+              <span>Червень 2024 - Вересень 2024</span>
+              <p>DigitalTech Agency</p>
+            </div>
+            <div class="cv-item">
+              <h4>Freelance Designer</h4>
+              <span>2023 - Теперішній час</span>
+              <p>Розробка веб-сайтів та дизайн інтерфейсів</p>
+            </div>
+          </div>
+
+          <div class="cv-block">
+            <h3>Навички</h3>
+            <div class="cv-item">
+              <h4>Технічні навички</h4>
+              <p>
+                HTML, CSS, JavaScript, React, Node.js, WordPress, Webflow,
+                Figma, Adobe Creative Suite
+              </p>
+            </div>
+            <div class="cv-item">
+              <h4>М'які навички</h4>
+              <p>
+                Командна робота, Тайм-менеджмент, Креативне мислення,
+                Комунікація
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <div class="container">
+        <h2>Блог</h2>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <div class="blog-img">📝</div>
+            <div class="blog-content">
+              <h3>Як я вивчав React: досвід початківця</h3>
+              <p class="blog-meta">5 жовтня 2024 • 5 хв читання</p>
+              <p>
+                Мій шлях вивчення React з нуля: які ресурси використовував, з
+                якими труднощами зіткнувся та що допомогло...
+              </p>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <div class="blog-img">🎨</div>
+            <div class="blog-content">
+              <h3>Топ-5 трендів веб-дизайну 2024</h3>
+              <p class="blog-meta">28 вересня 2024 • 7 хв читання</p>
+              <p>
+                Огляд найактуальніших тенденцій у веб-дизайні: від неоморфізму
+                до темних тем та мікроанімацій...
+              </p>
+            </div>
+          </div>
+
+          <div class="blog-card">
+            <div class="blog-img">💡</div>
+            <div class="blog-content">
+              <h3>LCNC-платформи: майбутнє веб-розробки?</h3>
+              <p class="blog-meta">15 вересня 2024 • 6 хв читання</p>
+              <p>
+                Порівняння Webflow, Wix та WordPress: переваги, недоліки та кому
+                що підходить...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2>Зв'яжіться зі мною</h2>
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Ім'я</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Тема</label>
+            <input type="text" id="subject" name="subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Повідомлення</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Відправити</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Іванна Новічкова. Всі права захищені.</p>
+        <p>Email: ivanka@example.com | Телефон: +380 XX XXX XX XX</p>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const projectCards = document.querySelectorAll(".project-card");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          const filter = button.getAttribute("data-filter");
+
+          projectCards.forEach((card) => {
+            if (filter === "all") {
+              card.style.display = "block";
+              setTimeout(() => (card.style.opacity = "1"), 10);
+            } else {
+              if (card.getAttribute("data-category") === filter) {
+                card.style.display = "block";
+                setTimeout(() => (card.style.opacity = "1"), 10);
+              } else {
+                card.style.opacity = "0";
+                setTimeout(() => (card.style.display = "none"), 300);
+              }
+            }
+          });
+        });
+      });
+
+      document
+        .querySelector(".contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          alert("Дякую за повідомлення! Я зв'яжусь з вами найближчим часом.");
+          e.target.reset();
+        });
+    </script>
+  </body>
+</html>
